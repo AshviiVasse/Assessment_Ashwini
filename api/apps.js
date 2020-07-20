@@ -17,22 +17,40 @@ app.get('/emp-list', authenticate, (req, res) =>{
 app.post('/', authenticate, (req, res) =>{
     let title = req.body.title;
 
-    let newList = new Empist({
+    let newList = new EmpList({
         title,
         _userId: req.user_id
     });
     newList.save().then((listDoc) => {
-        // the full list document is returned (incl. id)
         res.send(listDoc);
     })
 })
 
 app.patch('/', (req, res) =>{
-    EmpList.findOneAndUpdate({ _id: req.params.id, _userId: req.user_id }, {
-        $set: req.body
-    }).then(() => {
-        res.send({ 'message': 'updated successfully'});
-    });
+    List.findOne({
+        _id: req.params.listId,
+        _userId: req.user_id
+    }).then((list) => {
+        if (list) {
+            return true;
+        }
+
+        return false;
+    }).then((canUpdateEmpDetails) => {
+        if (canUpdateEmpDetails) {
+            EmpDetails.findOneAndUpdate({
+                _id: req.params.taskId,
+                _listId: req.params.listId
+            }, {
+                    $set: req.body
+                }
+            ).then(() => {
+                res.send({ message: 'Updated successfully.' })
+            })
+        } else {
+            res.sendStatus(404);
+        }
+    })
 })
 
 app.delete('/', (req, res) =>{
@@ -43,7 +61,7 @@ app.delete('/', (req, res) =>{
         res.send(removedListDoc);
 
         // delete all the tasks that are in the deleted list
-        deleteTasksFromList(removedListDoc._id);
+        deleteEmpDetailsFromList(removedListDoc._id);
     })
 })
 

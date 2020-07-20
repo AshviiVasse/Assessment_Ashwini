@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const EmpListSchema = new mongoose.Schema({
-    title: {
+    empType: {
         type: String,
         required: true,
         minlength: 1,
