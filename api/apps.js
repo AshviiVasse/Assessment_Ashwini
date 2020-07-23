@@ -1,5 +1,6 @@
 const app = express();
-app.listen(process.env.PORT || 8080);
+var PORT = process.env.PORT || 8080;
+app.listen(PORT);
 
 const { EmpList, EmpDetails } = require('./db/models');
 
@@ -13,54 +14,54 @@ app.get('/emp-list', authenticate, (req, res) =>{
     });
 })
 
-app.post('/', authenticate, (req, res) =>{
-    let title = req.body.title;
+// app.post('/', authenticate, (req, res) =>{
+//     let title = req.body.title;
 
-    let newList = new EmpList({
-        title,
-        _userId: req.user_id
-    });
-    newList.save().then((listDoc) => {
-        res.send(listDoc);
-    })
-})
+//     let newList = new EmpList({
+//         title,
+//         _userId: req.user_id
+//     });
+//     newList.save().then((listDoc) => {
+//         res.send(listDoc);
+//     })
+// })
 
-app.patch('/', (req, res) =>{
-    List.findOne({
-        _id: req.params.listId,
-        _userId: req.user_id
-    }).then((list) => {
-        if (list) {
-            return true;
-        }
+// app.patch('/', (req, res) =>{
+//     List.findOne({
+//         _id: req.params.listId,
+//         _userId: req.user_id
+//     }).then((list) => {
+//         if (list) {
+//             return true;
+//         }
 
-        return false;
-    }).then((canUpdateEmpDetails) => {
-        if (canUpdateEmpDetails) {
-            EmpDetails.findOneAndUpdate({
-                _id: req.params.taskId,
-                _listId: req.params.listId
-            }, {
-                    $set: req.body
-                }
-            ).then(() => {
-                res.send({ message: 'Updated successfully.' })
-            })
-        } else {
-            res.sendStatus(404);
-        }
-    })
-})
+//         return false;
+//     }).then((canUpdateEmpDetails) => {
+//         if (canUpdateEmpDetails) {
+//             EmpDetails.findOneAndUpdate({
+//                 _id: req.params.taskId,
+//                 _listId: req.params.listId
+//             }, {
+//                     $set: req.body
+//                 }
+//             ).then(() => {
+//                 res.send({ message: 'Updated successfully.' })
+//             })
+//         } else {
+//             res.sendStatus(404);
+//         }
+//     })
+// })
 
-app.delete('/', (req, res) =>{
-    EmpList.findOneAndRemove({
-        _id: req.params.id,
-        _userId: req.user_id
-    }).then((removedListDoc) => {
-        res.send(removedListDoc);
+// app.delete('/', (req, res) =>{
+//     EmpList.findOneAndRemove({
+//         _id: req.params.id,
+//         _userId: req.user_id
+//     }).then((removedListDoc) => {
+//         res.send(removedListDoc);
 
-        // delete all the tasks that are in the deleted list
-        deleteEmpDetailsFromList(removedListDoc._id);
-    })
-})
+//         // delete all the tasks that are in the deleted list
+//         deleteEmpDetailsFromList(removedListDoc._id);
+//     })
+// })
 
