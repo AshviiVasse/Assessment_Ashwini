@@ -2,6 +2,9 @@ const express = require ('express');
 
 const app = express();
 
+const port = process.env.PORT || 8080;
+
+
 const { EmpList, EmpDetails } = require('./db/models');
 
 app.get('/emp-list', authenticate, (req, res) =>{
