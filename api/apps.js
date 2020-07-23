@@ -1,9 +1,5 @@
-const express = require ('express');
-
 const app = express();
-
-const port = process.env.PORT || 8080;
-
+app.listen(process.env.PORT || 8080);
 
 const { EmpList, EmpDetails } = require('./db/models');
 
@@ -68,6 +64,3 @@ app.delete('/', (req, res) =>{
     })
 })
 
-app.listen(3000, () => {
-    console.log("Server listen 3000");
-})
