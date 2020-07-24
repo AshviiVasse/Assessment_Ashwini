@@ -7,21 +7,34 @@
         </h1>
   
         <div class="list-menu">
+          <a href="" class="list-menu-item is-active">
+            <!-- <p>{{ list.title }}</p> -->
+            <p >New Employees</p>
+            
+          </a>
+          <a href="" class="list-menu-item">
+            <!-- <p>{{ list.title }}</p> -->
+            <p >Current Employees</p>
+            
+          </a>
           <!-- <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active">
-            <p>{{ list.title }}</p>
           </a> -->
         </div>
   
-        <button class="button is-primary has-text-white" routerLink="/new-list">+ New Employee</button>
+        <button class="button is-primary has-text-white" routerLink="/new-list">+ Add Employee Type</button>
   
       </div>
   
       <div class="user-list-container has-background-light">
-        <!-- <div *ngIf="empDetails"> -->
           <div class="top-bar">
             <h1 class="title has-text-primary">
               Employee Details
             </h1>
+            <!-- ELement -->
+            <div class="emp-details">
+              <p>Employee Name</p>
+            </div>
+            
             <div class="dropdown is-hoverable is-right">
               <div class="dropdown-trigger">
                 <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
@@ -30,7 +43,7 @@
                   </span>
                 </button>
               </div>
-              <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+              <div class="dropdown-menu" id="dropdown-menu4" role="menu"> -->
                 <!-- <div class="dropdown-content">
                   <a [routerLink]="['/edit-list', selectedListId]" class="dropdown-item">
                     Edit

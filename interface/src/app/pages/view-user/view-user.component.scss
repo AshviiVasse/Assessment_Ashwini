@@ -78,7 +78,7 @@
     }
 }
 
-.task {
+.emp-details{
     display: flex;
     background: white;
     padding: 15px 20px;
@@ -105,36 +105,20 @@
         }
     }
 
-    &.completed .task-text {
-        text-decoration: line-through;
-        opacity: 0.8;
-    }
-
-
-    .task-text {
-        display: flex;
-        flex-grow: 1;
-    }
-
-    .task-buttons {
-        transition: opacity 0.2s, transform 0.2s;
-        opacity: 0;
-        transform: scale(0.85);
-    }
 }
 
-.circle-add-button {
-    position: absolute;
-    bottom: 35px;
-    right: 35px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
+// .circle-add-button {
+//     position: absolute;
+//     bottom: 35px;
+//     right: 35px;
+//     height: 50px;
+//     width: 50px;
+//     border-radius: 50%;
     
-}
+// }
 
-.empty-state-text {
-    font-size: 20px;
-    color: #777;
-    text-align: center;
-}
+// .empty-state-text {
+//     font-size: 20px;
+//     color: #777;
+//     text-align: center;
+// }
